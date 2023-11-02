@@ -13,6 +13,7 @@
     "preview": "npm run rasengan:start"
   },
   "dependencies": {
+    "@builder.io/react": "^3.1.1",
     "chalk": "^5.3.0",
     "compression": "^1.7.4",
     "express": "^4.18.2",
