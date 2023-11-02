@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <div style={{ display: "block" }}>
-      <h1>Home</h1>
+      <h1>again</h1>
       <p>This is the home page.</p>
 
       <input type="text" value={value} onChange={handleChange} />
