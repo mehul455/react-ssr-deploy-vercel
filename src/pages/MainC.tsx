@@ -1,7 +1,7 @@
 import React from 'react'
 // import { BuilderComponent, builder, useIsPreviewing } from '@builder.io/react';
 import { useEffect, useState } from "react";
-import { builder, useIsPreviewing, BuilderContent,BuilderComponent } from '@builder.io/react';
+import {  useIsPreviewing, BuilderContent,BuilderComponent,builder } from '@builder.io/react';
 
 import { useParams } from 'react-router';
 // Put your builder API key here
