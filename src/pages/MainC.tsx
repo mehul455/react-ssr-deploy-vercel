@@ -1,7 +1,9 @@
 import React from 'react'
 // import { BuilderComponent, builder, useIsPreviewing } from '@builder.io/react';
 import { useEffect, useState } from "react";
-import {  useIsPreviewing, BuilderContent,BuilderComponent,builder } from '@builder.io/react';
+// import {  useIsPreviewing,BuilderComponent,builder } from '@builder.io/react';
+import * as pkg from '@builder.io/react'
+const {useIsPreviewing,BuilderComponent,builder} = pkg
 
 import { useParams } from 'react-router';
 // Put your builder API key here
@@ -11,7 +13,7 @@ builder.init('2b9905c0600e411ab19676aebe792708')
 export default function MainC() {
     const isPreviewingInBuilder = useIsPreviewing();
     const [notFound, setNotFound] = useState(false);
-    const [content, setContent] = useState<BuilderContent | null>(null);
+    const [content, setContent] = useState(null);
     const { slug } = useParams();
 
     // get the page content from Builder
