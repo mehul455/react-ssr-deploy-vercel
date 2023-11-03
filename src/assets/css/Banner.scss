@@ -1,0 +1,31 @@
+.banner-container {
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.slick-dots {
+    bottom: 22px;
+}
+
+// .slick-slider.slick-initialized .slick-dots li button:before {
+//     color: transparent;
+//     border-color: white;
+// }
+.slick-dots li button:before {
+    color: white;
+}
+
+.slick-dots li.slick-active button:before {
+    color: black;
+    opacity: 0px;
+}
+
+.slick-dots li button:before {
+    font-size: 12px;
+    line-height: 20px;
+    height: 20px;
+    opacity: 0.75;
+}

@@ -4,6 +4,7 @@ import * as pkg from '@builder.io/react'
 const {useIsPreviewing,BuilderComponent,builder} = pkg
 
 import { useParams } from 'react-router';
+import Banner from './Banner';
 // Put your builder API key here
 
 export default function MainC() {
@@ -50,6 +51,7 @@ export default function MainC() {
 
     return (
         <>
+        <Banner heading={undefined}/>
             <BuilderComponent model="page" content={content} />
         </>
     )
