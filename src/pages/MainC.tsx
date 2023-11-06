@@ -68,7 +68,7 @@ export default function MainC() {
     return (
         <>
         {/* <Banner heading={undefined}/> */}
-        
+        <h1>rbh</h1>
             <BuilderComponent model="page" content={content} />
         </>
     )
