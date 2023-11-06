@@ -29,10 +29,11 @@ const handler = async (req, res) => {
     manifest = await fs.readFile(ssrManifestFilePath, "utf-8");
 
     const rendered = await render(url, manifest);
-
+    const builderApiResponse = await fetch(`https://cdn.builder.io/api/v1/html/${'page'}?apiKey=${'2b9905c0600e411ab19676aebe792708'}&url=${encodeURIComponent(url)}`);
+    const htmlContent = await builderApiResponse.text();
     const html = template
       .replace(`<!--app-head-->`, rendered.head ?? "")
-      .replace(`<!--app-html-->`, rendered.html ?? "");
+      .replace(`<!--app-html-->`, htmlContent ?? "");
 
     // Set headers
     res.setHeader("Content-Type", "text/html");
