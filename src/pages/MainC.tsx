@@ -12,6 +12,22 @@ export default function MainC() {
     const [notFound, setNotFound] = useState(false);
     const [content, setContent] = useState(null);
     const { slug } = useParams();
+    const [dataa, setDataa] = useState(null);
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://cdn.builder.io/api/v1/html/page?apiKey=2b9905c0600e411ab19676aebe792708&url=/');
+            const result = await response.json();
+            setDataa(result.data.html); // Update the state with the fetched data
+            console.log(result.data,"m");
+            
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData(); // Call the fetchData function when the component mounts
+      }, []); 
 
     // get the page content from Builder
 
@@ -52,6 +68,7 @@ export default function MainC() {
     return (
         <>
         {/* <Banner heading={undefined}/> */}
+        
             <BuilderComponent model="page" content={content} />
         </>
     )

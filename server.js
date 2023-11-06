@@ -69,12 +69,18 @@ app.use("*", async (req, res) => {
     }
 
     const rendered = await render(url, ssrManifest);
-
+//  const url = req.originalUrl;
+    const builderApiResponse = await fetch(`https://cdn.builder.io/api/v1/html/${'page'}?apiKey=${'2b9905c0600e411ab19676aebe792708'}&url=${encodeURIComponent(url)}`);
+    const htmlContent = await builderApiResponse.text();
     const html = template
       .replace(`<!--app-head-->`, rendered.head ?? "")
-      .replace(`<!--app-html-->`, rendered.html ?? "");
+      .replace(`<!--app-html-->`, htmlContent ?? "");
 
     res.status(200).set({ "Content-Type": "text/html" }).end(html);
+    // const url = req.originalUrl;
+    // const builderApiResponse = await fetch(`https://cdn.builder.io/api/v1/html/${'page'}?apiKey=${'2b9905c0600e411ab19676aebe792708'}&url=${encodeURIComponent(url)}`);
+    // const htmlContent = await builderApiResponse.text();
+    // res.status(200).send(htmlContent);
   } catch (e) {
     vite?.ssrFixStacktrace(e);
     console.log(e.stack);
@@ -106,6 +112,7 @@ export const getIP = () => {
 
   return ipAddress;
 };
+
 
 // Start http server
 app.listen(port, () => {
