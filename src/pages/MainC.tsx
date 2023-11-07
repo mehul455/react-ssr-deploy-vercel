@@ -1,11 +1,13 @@
 import React from 'react'
-import { useEffect, useState } from "react";
+import { lazy,useEffect, useState,Suspense } from "react";
 import * as pkg from '@builder.io/react'
 const {useIsPreviewing,BuilderComponent,builder} = pkg
 
 import { useParams } from 'react-router';
-import Banner from './Banner';
+// import Banner from './Banner';
 // Put your builder API key here
+const Banner = lazy(async () =>
+   await (import('./Banner')));
 
 export default function MainC() {
     const isPreviewingInBuilder = useIsPreviewing();
@@ -19,7 +21,7 @@ export default function MainC() {
             const response = await fetch('https://cdn.builder.io/api/v1/html/page?apiKey=2b9905c0600e411ab19676aebe792708&url=/');
             const result = await response.json();
             setDataa(result.data.html); // Update the state with the fetched data
-            console.log(result.data,"m");
+            console.log(result.data.html,"m");
             
           } catch (error) {
             console.error('Error fetching data:', error);
@@ -67,9 +69,15 @@ export default function MainC() {
 
     return (
         <>
-        {/* <Banner heading={undefined}/> */}
-        <h1>rbh</h1>
+        {/* <Banner heading={"undefined"}/> */}
+        {/* <h1>rbh</h1> */}
+       
             <BuilderComponent model="page" content={content} />
+            <Suspense fallback={<div>Loading Builder.io component...</div>}>
+        {/* Render the lazily loaded Builder.io component */}
+        {/* {builderContent && <div dangerouslySetInnerHTML={{ __html: builderContent }} />} */}
+        <Banner heading={undefined}/>
+      </Suspense>
         </>
     )
 }
